@@ -1,0 +1,57 @@
+services:
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.1
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+      # - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    expose:
+      - 8080
+    privileged: true
+    restart: always
+
+  nodeexporter:
+    image: prom/node-exporter:latest
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
+    expose:
+      - 9100
+    restart: always
+
+  grafana:
+    image: grafana/grafana:latest
+    volumes:
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - .env.grafana
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.adrienpelfresne.com`)"
+      - "traefik.http.routers.grafana.tls=true"
+      - "traefik.http.routers.grafana.service=grafana-svc"
+      - "traefik.http.services.grafana-svc.loadbalancer.server.port=3000"
+      - "traefik.http.routers.grafana.tls.certresolver=letsencrypt"
+    networks:
+      - traefik_public
+      - default
+    restart: always
+
+networks:
+  traefik_public:
+    external: true
+
+volumes:
+  prometheus_data:
+  grafana_data:
