@@ -1,3 +1,2 @@
-.env.grafana
-.env
+.env*
 acme.json
