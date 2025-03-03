@@ -13,11 +13,13 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - "./traefik.yaml:/traefik/traefik.yaml:ro"
-      - "./dynamic:/traefik/dynamic:ro"
+      - ./traefik.yaml:/traefik/traefik.yaml:ro
+      - ./dynamic:/traefik/dynamic:ro
       - ./data/acme.json:/traefik/acme.json
     networks:
       - traefik_public
+    env_file:
+      - .env.traefik
 
 networks:
   traefik_public:
