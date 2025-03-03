@@ -16,18 +16,20 @@ entryPoints:
 certificatesResolvers:
   letsencrypt:
     acme:
-      email: "adrien.pelfresne@gmail.com"
+      email: "${ACME_EMAIL}"
       storage: /traefik/acme.json
-
       httpChallenge:
         entryPoint: http
 
 providers:
   docker:
     endpoint: "unix:///var/run/docker.sock"
-    watch: true
     exposedByDefault: false
     network: traefik_public
+    watch: true
+  file:
+    directory: /etc/traefik/dynamic
+    watch: true
 
 log:
   level: ERROR

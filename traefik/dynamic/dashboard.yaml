@@ -1,0 +1,10 @@
+http:
+  routers:
+    dashboard:
+      rule: "Host(`${DASHBOARD_DOMAIN}`)"
+      service: "api@internal"
+      middlewares:
+        - dashboard-auth
+      entryPoints:
+        - websecure
+      tls: {}
