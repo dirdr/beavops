@@ -3,8 +3,10 @@ services:
     image: traefik:v3.3
     container_name: traefik
     restart: unless-stopped
+    env_file:
+      - ./.env.traefik
     command:
-      - "--configFile=/traefik/traefik.yaml"
+      - "--configFile=/etc/traefik/traefik.yaml"
     security_opt:
       - no-new-privileges:true
     ports:
@@ -13,13 +15,11 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./traefik.yaml:/traefik/traefik.yaml:ro
-      - ./dynamic:/traefik/dynamic:ro
-      - ./data/acme.json:/traefik/acme.json
+      - ./traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - ./dynamic:/etc/traefik/dynamic:ro
+      - ./data/acme.json:/etc/traefik/acme.json
     networks:
       - traefik_public
-    env_file:
-      - .env.traefik
 
 networks:
   traefik_public:

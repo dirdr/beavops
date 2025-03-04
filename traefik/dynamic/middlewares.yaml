@@ -3,4 +3,4 @@ http:
     dashboard-auth:
       basicAuth:
         users:
-          - "${DASHBOARD_USER}:${DASHBOARD_PASSWORD_HASH}"
+          - '{{env "DASHBOARD_USER"}}:{{env "DASHBOARD_PASSWORD_HASH"}}'
