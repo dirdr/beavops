@@ -1,6 +1,0 @@
-http:
-  middlewares:
-    dashboard-auth:
-      basicAuth:
-        users:
-          - '{{env "DASHBOARD_USER"}}:{{env "DASHBOARD_PASSWORD_HASH"}}'

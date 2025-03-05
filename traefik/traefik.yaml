@@ -13,6 +13,9 @@ entryPoints:
           permanent: true
   websecure:
     address: ":443"
+    http:
+      tls:
+        certResolver: letsencrypt
 
 certificatesResolvers:
   letsencrypt:
@@ -33,5 +36,5 @@ providers:
     watch: true
 
 log:
-  level: DEBUG
+  level: INFO
   format: json

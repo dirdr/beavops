@@ -20,6 +20,22 @@ services:
       - ./data/acme.json:/etc/traefik/acme.json
     networks:
       - traefik_public
+    labels:
+      - "traefik.enable=true"
+      # Dashboard
+      - "traefik.http.routers.dashboard.rule=Host(`${DASHBOARD_DOMAIN}`)"
+      - "traefik.http.routers.dashboard.entrypoints=websecure"
+      - "traefik.http.routers.dashboard.tls=true"
+      - "traefik.http.routers.dashboard.tls.certresolver=letsencrypt"
+      # Auth middleware
+      - "traefik.http.routers.dashboard.middlewares=dashboard-auth"
+      - "traefik.http.middlewares.dashboard-auth.basicauth.users=${DASHBOARD_AUTH_USERS}"
+      # Dashboard service path
+      - "traefik.http.routers.dashboard.service=api@internal"
+      # Rate limiting middleware 
+      - "traefik.http.routers.dashboard.middlewares=dashboard-rate-limit"
+      - "traefik.http.middlewares.dashboard-rate-limit.ratelimit.average=100"
+      - "traefik.http.middlewares.dashboard-rate-limit.ratelimit.burst=50"
 
 networks:
   traefik_public:
