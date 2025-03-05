@@ -1,0 +1,11 @@
+http:
+  routers:
+    dashboard:
+      rule: 'Host(`{{ env "DASHBOARD_DOMAIN" }}`)'
+      service: "api@internal"
+      middlewares:
+        - dashboard-auth
+        - dashboard-rate-limiter
+      entryPoints:
+        - websecure
+      tls: letsencrypt

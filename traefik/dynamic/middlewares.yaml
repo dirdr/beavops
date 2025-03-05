@@ -1,0 +1,11 @@
+http:
+  middlewares:
+    dashboard-auth:
+      basicAuth:
+        users:
+          - '{{ env "DASHBOARD_AUTH_USERS" }}'
+    dashboard-rate-limiter:
+      rateLimit:
+        average: 100
+        burst: 50
+        period: "1s"
