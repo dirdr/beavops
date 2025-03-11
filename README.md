@@ -56,10 +56,10 @@ Turns a VPS (or any Linux system you have in hand) into a home lab, allowing you
 
 1. **Traefik Integration:**  
    Traefik is pre-configured to use Let’s Encrypt for automatic TLS certificate provisioning.
-   Replace the `ACME_EMAIL` env variable in the `.env` file of the traefik service
+   Replace the `ACME_EMAIL` placeholder inside [traefik static config file](./traefik/traefik.yaml).
 
 3. **Certificate Resolver Configuration:**  
-  - Create the `acme.json` under `./traefik/data/` file and give it correct rights
+    Create the `acme.json` under `./traefik/data/` file and give it correct rights
     ```sh
     mkdir ./traefik/data && touch ./traefik/data/acme.json
     chmod 600 ./traefik/data/acme.json
