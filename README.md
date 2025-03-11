@@ -2,16 +2,11 @@
 
 Turns a VPS (or any Linux system you have in hand) into a home lab, allowing you to host and expose services to the internet! 🔬
 
-## Overview
 - **Reverse Proxy:** Uses Traefik to expose Docker services over the internet.
 - **Observability Stack:** Includes Prometheus and Grafana to monitor the infrastructure and containers.
 - **Automatic Updates:** Watchtower updates Docker images automatically.
 
-> [!note]
-> Watchtower is designed to update tool images automatically to reduce manual work.
-> It is **not** intended to replace a continuous delivery pipeline!
-
-## Services Included
+## Services Included 📦
 - **Traefik:**
   - Configured with prebuilt middleware (located in `./traefik/dynamic`), such as rate limiting and simple authentication via labels.
   - Exposes the Traefik admin dashboard to the internet.
@@ -25,23 +20,18 @@ Turns a VPS (or any Linux system you have in hand) into a home lab, allowing you
   
   ![grafana](./grafana.png)
 
-## Getting Started
+---
 
-### Basic Setup
-1. **Clone the Repository:**  
-   Clone this project onto your VPS.
-2. **Install Docker:**  
-   Ensure Docker and Docker Compose are installed.
+## Getting Started 🚀
+1. Clone the Repository:
+2. Install Docker and Docker Compose
 3. **Configure Environment Variables:**  
    - Duplicate the `env.example` files for each service you want to use and rename them to `.env`.
    - Fill in the necessary information in each environment file.
    - **Important:** Do not commit your `.env` files to your repository!
 
----
+### Grafana Setup 📊
 
-## Grafana Setup
-
-### First-Time Grafana Setup
 1. **Deploy Grafana:**  
    Launch the stack with Docker Compose: `docker compose up -d`.
 3. **Access the Interface:**  
@@ -56,11 +46,8 @@ Turns a VPS (or any Linux system you have in hand) into a home lab, allowing you
    - Import pre-built dashboards by clicking the **+** icon on the left sidebar and selecting **Import**.
    - You can use dashboard IDs from the [Grafana Dashboard Library](https://grafana.com/grafana/dashboards) or create your own.
 
----
+### TLS Configuration with Let’s Encrypt 🔒
 
-## TLS Configuration with Let’s Encrypt
-
-### Setting Up TLS with Traefik and Let’s Encrypt
 1. **Traefik Integration:**  
    Traefik is pre-configured to use Let’s Encrypt for automatic TLS certificate provisioning.
    Replace the `ACME_EMAIL` env variable in the `.env` file of the traefik service
@@ -71,4 +58,21 @@ Turns a VPS (or any Linux system you have in hand) into a home lab, allowing you
     mkdir ./traefik/data && touch ./traefik/data/acme.json
     chmod 600 ./traefik/data/acme.json
     ```
-    On the next traefik service launch, your http challenge will be resolved, and you will be able to use the `websecure` entrypoint already configured to use TLS 🔒 with the certificate
+### Watchtower 🗼
+The watchtower service just need to be started : `docker compose up -d` in the service directory
+
+> [!note]
+> Watchtower is designed to update tool images automatically to reduce manual work.
+> It is **not** intended to replace a continuous delivery pipeline!
+    On the next traefik service launch, your http challenge will be resolved, and you will be able to use the `websecure` entrypoint already configured to use TLS with the certificate
+
+## Contributing
+
+Contributions are welcome and appreciated! 🎉
+
+If you have suggestions, ideas, or find any issues, feel free to open an issue or submit a pull request.
+If you're not sure where to start, feel free to reach out or open a discussion.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
