@@ -20,7 +20,7 @@ entryPoints:
 certificatesResolvers:
   letsencrypt:
     acme:
-      email: "adrien.pelfresne@gmail.com"
+      email: "<ACME_EMAIl>"
       storage: /etc/traefik/acme.json
       httpChallenge:
         entryPoint: web
