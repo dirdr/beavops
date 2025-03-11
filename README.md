@@ -31,6 +31,10 @@ Turns a VPS (or any Linux system you have in hand) into a home lab, allowing you
    - Duplicate the `env.example` files for each service you want to use and rename them to `.env`.
    - Fill in the necessary information in each environment file.
    - **Important:** Do not commit your `.env` files to your repository!
+     
+### Traefik 🛫
+1. The traefik dashboard is exposed over internet, with the domain provided in `DASHBOARD_DOMAIN`
+2. Simple auth `DASHBOARD_AUTH_USERS` environment variable, can be generated using the `./traefik/scripts/generate_simple_auth.sh` script
 
 ### Grafana Setup 📊
 
