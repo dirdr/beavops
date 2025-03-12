@@ -27,7 +27,8 @@ Turns a VPS (or any Linux system you have in hand) into a home lab, allowing you
 ## Getting Started 🚀
 1. Clone the Repository:
 2. Install Docker and Docker Compose
-3. **Configure Environment Variables:**  
+3. Create the traefik network : `docker network create traefik_public`
+4. **Configure Environment Variables:**  
    - Duplicate the `env.example` files for each service you want to use and rename them to `.env`.
    - Fill in the necessary information in each environment file.
    - **Important:** Do not commit your `.env` files to your repository!
