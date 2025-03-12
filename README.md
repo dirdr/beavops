@@ -34,8 +34,8 @@ Turns a VPS (or any Linux system you have in hand) into a home lab, allowing you
    - **Important:** Do not commit your `.env` files to your repository!
      
 ### Traefik 🛫
-1. The traefik dashboard is exposed over internet, with the domain provided in `DASHBOARD_DOMAIN`
-2. Simple auth `DASHBOARD_AUTH_USERS` environment variable, can be generated using the `./traefik/scripts/generate_simple_auth.sh` script
+1. The traefik dashboard is exposed over internet, with the domain provided in `DASHBOARD_DOMAIN` environment variable
+2. Simple auth `DASHBOARD_AUTH_USERS` environment variable can be generated using the `./traefik/scripts/generate_simple_auth.sh`
 
 ### Grafana Setup 📊
 
