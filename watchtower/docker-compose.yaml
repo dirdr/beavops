@@ -1,9 +1,0 @@
-services:
-  watchtower:
-    container_name: watchtower
-    image: containrrr/watchtower
-    command:
-      - "--interval=3600"
-      - "--no-startup-message"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
