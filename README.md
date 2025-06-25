@@ -6,7 +6,7 @@ Turns a VPS (or any Linux system you have in hand) into a home lab, allowing you
 
 - **Reverse Proxy:** Uses Traefik to expose Docker services over the internet.
 - **Observability Stack:** Includes Prometheus and Grafana to monitor the infrastructure and containers.
-- **Automatic Updates:** Watchtower updates Docker images automatically.
+- **Automatic Updates:** W updates Docker images automatically.
 
 ## Services Included 📦
 - **Traefik:**
@@ -66,13 +66,14 @@ Turns a VPS (or any Linux system you have in hand) into a home lab, allowing you
     mkdir ./traefik/data && touch ./traefik/data/acme.json
     chmod 600 ./traefik/data/acme.json
     ```
-### Watchtower 🗼
-The watchtower service just need to be started : `docker compose up -d` in the service directory
+    On the next traefik service launch, your http challenge will be resolved, and you will be able to use the `websecure` entrypoint already configured to use TLS with the certificate
+   
+### What's up docker
+The wud service need to be started : `docker compose up -d` in the service directory
 
 > [!note]
-> Watchtower is designed to update tool images automatically to reduce manual work.
+> WUD is designed to update tool images automatically to reduce manual work.
 > It is **not** intended to replace a continuous delivery pipeline!
-    On the next traefik service launch, your http challenge will be resolved, and you will be able to use the `websecure` entrypoint already configured to use TLS with the certificate
 
 ## Contributing
 
