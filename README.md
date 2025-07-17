@@ -1,8 +1,9 @@
+# Beavops 🦫
+
 ![Gitleaks](https://github.com/dirdr/homelab_config/actions/workflows/gitleaks.yaml/badge.svg)
 
-# Homelab Configuration 🏗️
-
-Turns a VPS (or any Linux system you have in hand) into a home lab, allowing you to host and expose services to the internet! 🔬
+## About
+Homelab insfrastructure stack making it trivial to deploy internet facing services
 
 ## Services 📦
 - Traefik:
