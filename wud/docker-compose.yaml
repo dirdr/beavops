@@ -5,7 +5,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - 8081:3000 # Map to a different external port to not conflict with grafana-svc
+      - 8081:3000
     environment:
       - WUD_DOMAIN=${WUD_DOMAIN}
       - WUD_AUTH_BASIC_ADMIN_USER=${WUD_AUTH_BASIC_ADMIN_USER}
