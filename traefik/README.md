@@ -22,7 +22,7 @@ Because of the way certificate challenges work, Traefik needs to be running and 
 ### Configuration
 
 1. Dashboard is exposed over internet, with the domain provided in `DASHBOARD_DOMAIN` environment var
-2. Simple auth `DASHBOARD_AUTH_USERS` environment variable can be generated using [this script](./scripts/generate_simple_auth.sh)
+2. Simple auth `DASHBOARD_AUTH_USERS` environment variable can be generated using `htpasswd -nb <user> <passwd> | sed 's/\$/\$\$/g'` (sed to escape dollar signs)
 3. Start with `docker compose up -d`
 
 ### TLS Configuration with Let's Encrypt 🔒
