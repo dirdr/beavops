@@ -3,9 +3,11 @@
 ![Gitleaks](https://github.com/dirdr/homelab_config/actions/workflows/gitleaks.yaml/badge.svg)
 
 ## About
+
 Homelab insfrastructure stack making it trivial to deploy internet facing services
 
 ## Services 📦
+
 - Traefik:
   - Configured with prebuilt middleware (located in `./traefik/dynamic`), such as rate limiting and simple authentication via labels.
   - Exposes Traefik admin dashboard.
@@ -28,20 +30,21 @@ Homelab insfrastructure stack making it trivial to deploy internet facing servic
 ---
 
 ## Getting Started 🚀
+>
 > [!important]
 > The only required service needed to deploy your own containers to the internet is [traefik](./traefik) which acts as the reverse proxy, the rest of the stack is optional.
 > Because of the way certificate challenges work, Traefik needs to be running and ready to respond to ACME challenges from Let's Encrypt. When services start, Traefik discovers them and initiates certificate requests, but Traefik itself must already be running to handle the challenge responses. Therefore, you want to start **Traefik first**, then start your other services.
-
 
 1. Clone the Repository:
 3. Create the traefik network : `docker network create traefik_public`
 4. **Configure Environment Variables:**  
    - Duplicate the `env.example` files for each service to `.env`
    - Fill in information in each environment file.
-     
+
 ---
-     
+
 ### Traefik 🛫
+
 1. Dashboard is exposed over internet, with the domain provided in `DASHBOARD_DOMAIN` environment var
 2. Simple auth `DASHBOARD_AUTH_USERS` environment variable can be generated using [this script](./traefik/scripts/generate_simple_auth.sh)
 3. Start with `docker compose up -d`
@@ -57,6 +60,7 @@ Homelab insfrastructure stack making it trivial to deploy internet facing servic
    - Click _Save & Test_.
 6. Dashboard Setup (Optional):
    - Import pre-built dashboards by clicking the _+_ icon on the left sidebar and selecting _Import_.
+
 > [!tip]
 > You can use dashboard IDs from the [Grafana Dashboard Library](https://grafana.com/grafana/dashboards)
 
@@ -68,14 +72,16 @@ Homelab insfrastructure stack making it trivial to deploy internet facing servic
 
 3. **Certificate Resolver Configuration:**  
     Create the `acme.json` under `./traefik/data/` file
+
     ```sh
     mkdir ./traefik/data && touch ./traefik/data/acme.json
     chmod 600 ./traefik/data/acme.json
     ```
+
     On the traefik service launch, http challenge will be resolved
 
-
 ### What's up docker 🐋
+
 The wud service need to be started : `docker compose up -d` in the service directory
 
 > [!note]
@@ -94,15 +100,18 @@ The wud service need to be started : `docker compose up -d` in the service direc
 3. **First Login:**
    - Username: `admin`
    - Password: `umami`
-   - Change default password immediately
+   - Change default password inside settings/user
 
 4. **Add to Services:**
-   ```html
-   <script defer src="https://your-analytics-domain.com/script.js" data-website-id="your-website-id"></script>
+Go to Website -> Add Website enter name and domain then go into Edits -> Tracking Code and copy the tracking code
+put the tracking code inside your html file on the service you want to track.
+
    ```
 
-## Your own Containers ! 
+## Your own Containers
+
 Add _Traefik_ essential labels to your containers, i writing inside a _docker compose_ file
+
 ```yaml
 labels:
   - "traefik.enable=true"
@@ -122,6 +131,6 @@ Contributions are welcome and appreciated! 🎉
 If you have suggestions, ideas, or find any issues, feel free to open an issue or submit a pull request.
 If you're not sure where to start, feel free to reach out or open a discussion.
 
-## License 
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

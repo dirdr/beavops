@@ -56,4 +56,3 @@ networks:
     external: true
   umami_internal:
     driver: bridge
-
