@@ -19,6 +19,12 @@ Homelab insfrastructure stack making it trivial to deploy internet facing servic
   
   ![grafana](./grafana.png)
 
+- Umami Analytics:
+  - Privacy-focused web analytics alternative to Google Analytics
+  - Integrated with Traefik for SSL termination
+  - PostgreSQL backend for data persistence
+  - Self-hosted with full data ownership
+
 ---
 
 ## Getting Started 🚀
@@ -70,6 +76,25 @@ The wud service need to be started : `docker compose up -d` in the service direc
 > [!note]
 > WUD is designed to update tool images automatically to reduce manual work.
 > It is **not** intended to replace a continuous delivery pipeline!
+
+### Umami Analytics 📊
+
+1. **Environment Setup:**
+   - Copy `.env.example` to `.env` in the `umami/` directory
+   - Generate APP_SECRET: `openssl rand -hex 32`
+   - Configure `UMAMI_DOMAIN` and `POSTGRES_PASSWORD`
+
+2. **Deploy:** `docker compose up -d`
+
+3. **First Login:**
+   - Username: `admin`
+   - Password: `umami`
+   - Change default password immediately
+
+4. **Add to Services:**
+   ```html
+   <script defer src="https://your-analytics-domain.com/script.js" data-website-id="your-website-id"></script>
+   ```
 
 ---
 
