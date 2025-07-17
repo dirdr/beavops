@@ -28,6 +28,11 @@ Homelab insfrastructure stack making it trivial to deploy internet facing servic
 ---
 
 ## Getting Started 🚀
+> [!important]
+> The only required service needed to deploy your own containers to the internet is [traefik](./traefik) which acts as the reverse proxy, the rest of the stack is optional.
+> Because of the way certificate challenges work, Traefik needs to be running and ready to respond to ACME challenges from Let's Encrypt. When services start, Traefik discovers them and initiates certificate requests, but Traefik itself must already be running to handle the challenge responses. Therefore, you want to start **Traefik first**, then start your other services.
+
+
 1. Clone the Repository:
 3. Create the traefik network : `docker network create traefik_public`
 4. **Configure Environment Variables:**  
@@ -95,6 +100,18 @@ The wud service need to be started : `docker compose up -d` in the service direc
    ```html
    <script defer src="https://your-analytics-domain.com/script.js" data-website-id="your-website-id"></script>
    ```
+
+## Your own Containers ! 
+Add _Traefik_ essential labels to your containers, i writing inside a _docker compose_ file
+```yaml
+labels:
+  - "traefik.enable=true"
+  - "traefik.http.routers.SERVICE_NAME.rule=Host(`domain.com`)"
+  - "traefik.http.routers.SERVICE_NAME.tls=true"
+  - "traefik.http.routers.SERVICE_NAME.entrypoints=web,websecure"
+  - "traefik.http.routers.SERVICE_NAME.tls.certresolver=letsencrypt"
+  - "traefik.http.services.SERVICE_NAME.loadbalancer.server.port=PORT"
+```
 
 ---
 
