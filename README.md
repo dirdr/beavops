@@ -4,7 +4,7 @@
 
 ## About
 
-Homelab insfrastructure stack making it trivial to deploy internet facing services
+Homelab insfrastructure stack making it trivial to deploy, monitor and manage internet facing services
 
 ## Services 📦
 
