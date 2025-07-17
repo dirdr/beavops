@@ -12,35 +12,37 @@ Homelab insfrastructure stack making it trivial to deploy internet facing servic
   - Configured with prebuilt middleware (located in `./traefik/dynamic`), such as rate limiting and simple authentication via labels.
   - Exposes Traefik admin dashboard.
   - Let's Encrypt HTTP challenge for TLS certificate provisioning.
-  
+
   ![dashboard](./dashboard.png)
 
 - **[Monitoring](./monitoring/README.md)** (Optional):
-  - Prometheus: Collects metrics from cAdvisor (containers) and Node Exporter (infrastructure).  
+  - Prometheus: Collects metrics from cAdvisor (containers) and Node Exporter (infrastructure).
   - Grafana
-  
+
   ![grafana](./grafana.png)
 
 - **[Umami Analytics](./umami/README.md)** (Optional):
   - Privacy-focused web analytics alternative to Google Analytics
   - Integrated with Traefik for SSL termination
-  - PostgreSQL backend for data persistence
+  - PostgreSQL backend
   - Self-hosted with full data ownership
 
+  ![umami](./umami.png)
+
 - **[What's up docker](./wud/README.md)** (Optional):
-  - Automatic Docker image update tool
+  - Dashboard to monitor availables container update, can be configured to send notifications or upgrade containers
 
 ---
 
 ## Getting Started 🚀
->
+
 > [!important]
 > The only required service needed to deploy your own containers to the internet is [traefik](./traefik) which acts as the reverse proxy, the rest of the stack is optional.
 > Because of the way certificate challenges work, Traefik needs to be running and ready to respond to ACME challenges from Let's Encrypt. When services start, Traefik discovers them and initiates certificate requests, but Traefik itself must already be running to handle the challenge responses. Therefore, you want to start **Traefik first**, then start your other services.
 
 1. Clone the Repository:
-3. Create the traefik network : `docker network create traefik_public`
-4. **Configure Environment Variables:**  
+2. Create the traefik network : `docker network create traefik_public`
+3. **Configure Environment Variables:**
    - Duplicate the `env.example` files for each service to `.env`
    - Fill in information in each environment file.
 
