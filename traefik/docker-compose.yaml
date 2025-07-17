@@ -22,7 +22,7 @@ services:
     networks:
       - traefik_public
     labels:
-      - "traefik.enable=true"
+      - "traefik.enable=false"
 
 networks:
   traefik_public:
