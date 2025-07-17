@@ -19,6 +19,7 @@ Traefik must be running first as it's mandatory for all services.
 
 1. **Configure Environment Variables:**  
    - Duplicate the `env.example` file to `.env`
+   - Generate password hash using : `htpasswd -nb <user> <password> | sed 's/\$/\$\$/g'` (sed to escape dollar signs)
    - Fill in information in the environment file.
 
 2. The wud service need to be started : `docker compose up -d` in the service directory
