@@ -57,7 +57,7 @@ For detailed setup instructions for each service, refer to their individual READ
 
 ## Your own Containers
 
-Add _Traefik_ essential labels to your containers, i writing inside a _docker compose_ file
+Add _Traefik_ essential labels to your container, i recomand using a _docker compose_ file
 
 ```yaml
 labels:
