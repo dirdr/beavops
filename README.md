@@ -57,7 +57,7 @@ For detailed setup instructions for each service, refer to their individual READ
 
 ## Your own Containers
 
-Add _Traefik_ essential labels to your container, i recomand using a _docker compose_ file
+Add _Traefik_ essential labels to your container, I recommend using a _docker compose_ file
 
 ```yaml
 labels:
@@ -81,3 +81,4 @@ If you're not sure where to start, feel free to reach out or open a discussion.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
